@@ -41,9 +41,8 @@ public class MainController {
         return "REST Back-end Challenge 20201209 Running";
     }
 
-    @GetMapping("import-data")
-    @Scheduled(cron = "0 5 14 * * ?")
-    public ResponseEntity<Long> getHelloWorld() throws Exception {
+    @Scheduled(cron = "0 56 19 * * ?")
+    public void getHelloWorld() throws Exception {
         String uri = "launch";
         LauncherWrapper launcherBody = mainService.launcherRestCall(uri);
         List<Launcher> results = launcherBody.getResults();
@@ -57,7 +56,6 @@ public class MainController {
                 launcherService.saveLauncher(result);
             }
         }
-        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping("launchers")
